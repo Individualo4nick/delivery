@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div style="display: flex" id="support">
+        <div th:each="oneSupport: ${support}" style="width: 150px; margin: 5px">
+            <a style="text-decoration: none" th:href="${'/support/' + oneSupport.id}">
+                <p th:text="${oneSupport.id} + '. ' +${oneSupport.name} + ' ' + ${oneSupport.surname}"></p>
+            </a>
+            <p th:text="${oneSupport.salary}"></p>
+            <p th:text="${oneSupport.number}"></p>
+        </div>
+    </div>
+
+    <form th:action="@{/support/orderBy}" method="get">
+        <label for="field">Field
+            <input type="text" name="field" id="field"/>
+        </label>
+        <label for="asc">Asc/Desc
+            <input type="text" name="asc" id="asc"/>
+        </label>
+        <button type="submit">Order</button>
+    </form>
+
+    <a th:href="${'/support/create'}">Create support</a>
+
+    <form th:action="@{/support/deleteAll}" method="post">
+        <button type="submit">Delete all</button>
+    </form>
+</body>
+</html>

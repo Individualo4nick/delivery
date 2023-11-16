@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div id="support">
+        <p th:text="${oneSupport.name} + ' ' + ${oneSupport.surname} + ' ' + ${oneSupport.salary} + ' ' + ${oneSupport.number}"></p>
+        <div th:if="${oneSupport.clients}">
+            <b>Clients</b>
+            <div th:each="oneClient: ${oneSupport.clients}">
+                <p th:text="${oneClient.id} + '. ' +${oneClient.name} + ' ' + ${oneClient.surname}"></p>
+            </div>
+        </div>
+        <a th:href="${'/support/update/' + oneSupport.id}">Update support</a>
+        <a th:href="${'/support/delete/' + oneSupport.id}">Delete support</a>
+    </div>
+</body>
+</html>

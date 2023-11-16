@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div id="courier">
+        <p th:text="${oneCourier.name} + ' ' + ${oneCourier.surname}"></p>
+        <p th:text="${oneCourier.salary}"></p>
+        <div th:if="${oneCourier.transports}">
+            <b>Transport:</b>
+            <div th:each="oneTransport: ${oneCourier.transports}">
+                <div style="display: flex">
+                    <p th:text="${oneTransport.id} + '. ' +${oneTransport.title}"></p>
+                    <form method="post" action="/courier/delete/transport">
+                        <input hidden th:value="${oneTransport.id}" name="id">
+                        <input hidden th:value="${oneCourier.id}" name="courierId">
+                        <input type="submit" value="X">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:if="${oneCourier.clients}">
+            <b>Clients:</b>
+            <div th:each="oneClient: ${oneCourier.clients}">
+                <p th:text="${oneClient.id} + '. ' +${oneClient.name} + ' ' + ${oneClient.surname}"></p>
+            </div>
+        </div>
+        <a th:href="${'/courier/update/' + oneCourier.id}">Update courier</a>
+        <a th:href="${'/courier/delete/' + oneCourier.id}">Delete courier</a>
+    </div>
+    <form th:action="@{/courier/create/transport}" method="post">
+        <label for="title">Title
+            <input type="text" name="title" id="title"/>
+        </label>
+        <label for="courier_id">
+            <input hidden="hidden" type="text" name="courier_id" id="courier_id" th:value="${oneCourier.id}"/>
+        </label>
+        <button type="submit">Add transport</button>
+    </form>
+</body>
+</html>

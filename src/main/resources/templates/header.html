@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul {
+        list-style-type: none;
+        display : flex;
+    }
+    li {
+        padding: 30px;
+    }
+    a {
+        color: #000 !important;
+        text-decoration: none
+    }
+</style>
+<header style="background: #D3D3D3">
+    <nav>
+        <ul>
+            <li><strong>Delivery in MIREA</strong></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Log-in</a></li>
+            <li><a href="/order/product">Products</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/order/create">Create order</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/order">Orders</a></li>
+            <li sec:authorize="isAuthenticated()" ><a href="/client">Clients</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/courier">Couriers</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/support">Supports</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')" ><a href="/order/create/product">Create product</a></li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <form th:action="${'/support/update/' + oneSupport.id}" method="post" th:object="${oneSupport}">
+        <label for="name">Name
+            <input type="text" name="name" id="name" th:value="*{name}"/>
+        </label>
+        <label for="surname">Surname
+            <input type="text" name="surname" id="surname" th:value="*{surname}"/>
+        </label>
+        <label for="salary">Address
+            <input type="number" name="salary" id="salary" th:value="*{salary}"/>
+        </label>
+        <label for="address">Address
+            <input type="text" name="address" id="address" th:value="*{number}"/>
+        </label>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

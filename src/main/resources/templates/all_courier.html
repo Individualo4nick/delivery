@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div style="display: flex" id="courier">
+        <div th:each="oneCourier: ${courier}" style="width: 150px; margin: 5px">
+            <a style="text-decoration: none" th:href="${'/courier/' + oneCourier.id}">
+                <p th:text="${oneCourier.id} + '. ' +${oneCourier.name} + ' ' + ${oneCourier.surname}"></p>
+            </a>
+            <p th:text="${oneCourier.salary}"></p>
+            <p th:text="${oneCourier.orderCount}"></p>
+        </div>
+    </div>
+
+    <form th:action="@{/courier/orderBy}" method="get">
+        <label for="field">Field
+            <input type="text" name="field" id="field"/>
+        </label>
+        <label for="asc">Asc/Desc
+            <input type="text" name="asc" id="asc"/>
+        </label>
+        <button type="submit">Order</button>
+    </form>
+
+    <a th:href="${'/courier/create'}">Create courier</a>
+
+    <form th:action="@{/courier/deleteAll}" method="post">
+        <button type="submit">Delete all</button>
+    </form>
+</body>
+</html>

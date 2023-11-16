@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div style="display: flex" id="client">
+        <div th:each="oneClient: ${clients}" style="width: 150px; margin: 5px">
+            <p th:text="${oneClient.id} + '. ' +${oneClient.name} + ' ' + ${oneClient.surname}"></p>
+            <p th:text="${oneClient.address}"></p>
+            <p th:text="${oneClient.orderCount}"></p>
+        </div>
+    </div>
+
+    <form th:action="@{/client/orderBy}" method="get">
+        <label for="field">Field
+            <input type="text" name="field" id="field"/>
+        </label>
+        <label for="asc">Asc/Desc
+            <input type="text" name="asc" id="asc"/>
+        </label>
+        <button type="submit">Order</button>
+    </form>
+
+    <form th:action="@{/client/deleteAll}" method="post">
+        <button type="submit">Delete all</button>
+    </form>
+</body>
+</html>

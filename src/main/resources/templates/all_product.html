@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div style="display: flex" id="products">
+        <div th:each="oneProduct: ${products}" style="width: 150px; margin: 5px">
+            <p th:text="${oneProduct.id} + '. ' + ${oneProduct.title}"></p>
+            <p th:text="${oneProduct.description}"></p>
+            <p th:text="${oneProduct.price}"></p>
+        </div>
+    </div>
+</body>
+</html>

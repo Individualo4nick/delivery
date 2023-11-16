@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <form th:action="@{/support/create}" method="post">
+        <label for="name">Name
+            <input type="text" name="name" id="name"/>
+        </label>
+        <label for="surname">Surname
+            <input type="text" name="surname" id="surname"/>
+        </label>
+        <label for="salary">Salary
+            <input type="number" name="salary" id="salary"/>
+        </label>
+        <label for="number">Number
+            <input type="text" name="number" id="number"/>
+        </label>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

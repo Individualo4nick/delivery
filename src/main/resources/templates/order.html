@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div id="order">
+        <p th:text="Title + ':' + ${oneOrder.title}"></p>
+        <p th:text="Description + ':' + ${oneOrder.description}"></p>
+        <p th:text="Stage + ':' + ${oneOrder.stage}"></p>
+        <p th:text="Total+ ':' + ${oneOrder.total}"></p>
+        <div th:if="${oneOrder.products}">
+            <b>Products:</b>
+            <div th:each="oneProduct: ${oneOrder.products}">
+                <p th:text="Title + ':' + ${oneProduct.title}"></p>
+                <p th:text="Description + ':' + ${oneProduct.description}"></p>
+                <p th:text="Price + ':' + ${oneProduct.price}"></p>
+            </div>
+        </div>
+        <div th:if="${oneOrder.client}">
+            <b>Client:</b>
+            <p th:text="${oneOrder.client.name} + ' ' + ${oneOrder.client.surname}"></p>
+            <p th:text="${oneOrder.client.address}"></p>
+        </div>
+        <div th:if="${oneOrder.courier}">
+            <b>Courier:</b>
+            <a style="text-decoration: none" th:href="${'/courier/' + oneOrder.courier.id}">
+                <p th:text="${oneOrder.courier.name} + ' ' + ${oneOrder.courier.surname}"></p>
+            </a>
+        </div>
+        <a th:href="${'/order/delete/' + oneOrder.id}">Delete order</a>
+    </div>
+</body>
+</html>

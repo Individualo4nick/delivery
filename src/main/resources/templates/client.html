@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+    <div id="client">
+        <p th:text="${oneClient.name} + ' ' + ${oneClient.surname}"></p>
+        <p th:text="${oneClient.address}"></p>
+        <p th:text="${oneClient.typeSale.title}"></p>
+        <div th:if="${oneClient.cardData}">
+            <b>Card:</b>
+            <p th:text="${oneClient.cardData.cardNumber}"></p>
+            <p th:text="${oneClient.cardData.cardDate}"></p>
+        </div>
+        <form th:action="${'/client/create/card/' + oneClient.id}" method="post">
+            <label for="cardNumber">Card number
+                <input type="text" name="cardNumber" id="cardNumber"/>
+            </label>
+            <label for="cardDate">Card date
+                <input type="text" name="cardDate" id="cardDate"/>
+            </label>
+            <button type="submit">Swap card</button>
+        </form>
+        <a th:href="${'/client/update/' + oneClient.id}">Update</a>
+        <a th:href="${'/client/delete/' + oneClient.id}">Delete</a>
+    </div>
+</body>
+</html>
